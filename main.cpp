@@ -1,67 +1,14 @@
-
 #include "imgui.h"
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
 #include <stdio.h>
+#include "init.h"
 
 #include <GLFW/glfw3.h> // Will drag system OpenGL headers
 
-static void glfw_error_callback(int error, const char *description)
-{
-    fprintf(stderr, "Glfw Error %d: %s\n", error, description);
-}
-
 int main(int, char **)
 {
-
-    glfwSetErrorCallback(glfw_error_callback);
-    if (!glfwInit())
-        return 1;
-
-    const char *glsl_version = "#version 130";
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
-
-    GLFWwindow *window = glfwCreateWindow(1280, 720, "Dear ImGui GLFW+OpenGL3 example", NULL, NULL);
-    if (window == NULL)
-        return 1;
-    glfwMakeContextCurrent(window);
-    glfwSwapInterval(1); // Enable vsync
-
-    IMGUI_CHECKVERSION();
-    ImGui::CreateContext();
-    ImGuiIO &io = ImGui::GetIO();
-    (void)io;
-    io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard; // Enable Keyboard Controls
-    //io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
-
-    // Setup Dear ImGui style
-    ImGui::StyleColorsDark();
-    //ImGui::StyleColorsClassic();
-
-    // Setup Platform/Renderer backends
-    ImGui_ImplGlfw_InitForOpenGL(window, true);
-    ImGui_ImplOpenGL3_Init(glsl_version);
-
-    // Load Fonts
-    // - If no fonts are loaded, dear imgui will use the default font. You can also load multiple fonts and use ImGui::PushFont()/PopFont() to select them.
-    // - AddFontFromFileTTF() will return the ImFont* so you can store it if you need to select the font among multiple.
-    // - If the file cannot be loaded, the function will return NULL. Please handle those errors in your application (e.g. use an assertion, or display an error and quit).
-    // - The fonts will be rasterized at a given size (w/ oversampling) and stored into a texture when calling ImFontAtlas::Build()/GetTexDataAsXXXX(), which ImGui_ImplXXXX_NewFrame below will call.
-    // - Read 'docs/FONTS.md' for more instructions and details.
-    // - Remember that in C/C++ if you want to include a backslash \ in a string literal you need to write a double backslash \\ !
-    //io.Fonts->AddFontDefault();
-    //io.Fonts->AddFontFromFileTTF("../../misc/fonts/Roboto-Medium.ttf", 16.0f);
-    //io.Fonts->AddFontFromFileTTF("../../misc/fonts/Cousine-Regular.ttf", 15.0f);
-    //io.Fonts->AddFontFromFileTTF("../../misc/fonts/DroidSans.ttf", 16.0f);
-    //io.Fonts->AddFontFromFileTTF("../../misc/fonts/ProggyTiny.ttf", 10.0f);
-    ImFont *font = io.Fonts->AddFontFromFileTTF("c:\\Windows\\Fonts\\SIMKAI.ttf", 20.0f, NULL, io.Fonts->GetGlyphRangesChineseSimplifiedCommon());
-    //IM_ASSERT(font != NULL);
-
-    // Our state
-    bool show_demo_window = true;
-    bool show_another_window = false;
-    ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
+    GLFWwindow *window = init();
 
     // Main loop
     while (!glfwWindowShouldClose(window))
@@ -77,26 +24,26 @@ int main(int, char **)
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
-
+        bool show_demo_window = true;
         // 1. Show the big demo window (Most of the sample code is in ImGui::ShowDemoWindow()! You can browse its code to learn more about Dear ImGui!).
         if (show_demo_window)
             ImGui::ShowDemoWindow(&show_demo_window);
 
         // 2. Show a simple window that we create ourselves. We use a Begin/End pair to created a named window.
         {
-            // static bool i1 = true;
+            static bool i1 = true;
 
             // {
-            //     ImGui::Begin("liang", &i1);
+            ImGui::Begin("liang", &i1);
 
-            //     ImGui::Text("今天开心，就这么干了");
+            ImGui::Text("今天开心，就这么干 了  ");
             //     ImGui::Text("今天开心，就这么干了");
             //     ImGui::Text("今天开心，就这么干了");
             //     ImGui::Text("今天开心，就这么干了");
             //     ImGui::Text("今天开心，就这么干了");
             //     ImGui::Text("今天开心，就这么干了");
             //     ImGui::Checkbox("判断另一个窗口", &i1);
-            //     ImGui::End();
+            ImGui::End();
             // }
 
             // if (i1)
@@ -139,6 +86,8 @@ int main(int, char **)
             // ImGui::End();
         }
 
+        bool show_another_window = false;
+        ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
         // 3. Show another simple window.
         if (show_another_window)
         {
