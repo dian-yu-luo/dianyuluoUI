@@ -4,10 +4,9 @@ project(main VERSION 0.1.0)
 include(CTest)
 enable_testing()
 
-# add_compile_options("$<$<C_COMPILER_ID:MSVC>:/utf-8>")
-# add_compile_options("$<$<CXX_COMPILER_ID:MSVC>:/utf-8>")
+aux_source_directory(src sources)
 
-add_executable(main main.cpp init.cpp stop.cpp begin_of_mainLoop.cpp end_of_mainLoop.cpp)
+add_executable(main ${sources})
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
@@ -24,4 +23,7 @@ target_link_libraries(main PRIVATE glfw)
 
 target_link_libraries(main  PRIVATE opengl32)
 
+target_include_directories(main PRIVATE
+    ${PROJECT_SOURCE_DIR/src}
+)
 include(CPack)
