@@ -1,6 +1,3 @@
-#include "imgui.h"
-#include "imgui_impl_glfw.h"
-#include "imgui_impl_opengl3.h"
 #include <stdio.h>
 #include "init.h"
 #include "stop.h"
@@ -18,12 +15,6 @@ int main(int, char **)
     {
         begin_of_mainLoop();
 
-        {
-            static bool i1 = true;
-            ImGui::Begin("liang", &i1);
-            ImGui::Text("all is right");
-            ImGui::End();
-        }
         {
             drawSample();
             drawSameple2("weilai");
