@@ -5,8 +5,9 @@ include(CTest)
 enable_testing()
 
 aux_source_directory(src sources)
+aux_source_directory(utils utilsources)
 
-add_executable(main ${sources})
+add_executable(main ${sources} ${utilsources})
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
@@ -23,7 +24,8 @@ target_link_libraries(main PRIVATE glfw)
 
 target_link_libraries(main  PRIVATE opengl32)
 
-target_include_directories(main PRIVATE
-    ${PROJECT_SOURCE_DIR/src}
+include_directories(
+    ${PROJECT_SOURCE_DIR}/src
+    ${PROJECT_SOURCE_DIR}/utils
 )
 include(CPack)
