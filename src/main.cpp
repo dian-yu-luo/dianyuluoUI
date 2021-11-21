@@ -7,6 +7,7 @@
 #include "begin_of_mainLoop.h"
 #include "end_of_mainLoop.h"
 #include <Windows.h>
+#include <draw.h>
 
 #include <GLFW/glfw3.h> // Will drag system OpenGL headers
 
@@ -22,6 +23,10 @@ int main(int, char **)
             ImGui::Begin("liang", &i1);
             ImGui::Text("all is right");
             ImGui::End();
+        }
+        {
+            drawSample();
+            drawSameple2("weilai");
         }
 
         end_of_mainLoop(window);
