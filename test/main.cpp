@@ -12,16 +12,27 @@ int main(int, char **)
 {
 
     bool c = true;
-
+    bool k = false;
     GLFWwindow *window = init();
     while (!glfwWindowShouldClose(window))
     {
         begin_of_mainLoop();
 
         {
+            // 交替成就写法
             if (c)
             {
-                drawSameple3("okz",&c);
+                drawSameple3("okz", &c);
+            }
+            if (!c)
+            {
+                k = true;
+
+                drawSameple3("ak", &k);
+                if (!k)
+                {
+                    c = true;
+                }
             }
 
             drawSample();
