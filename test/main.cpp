@@ -10,12 +10,20 @@
 
 int main(int, char **)
 {
+
+    bool c = true;
+
     GLFWwindow *window = init();
     while (!glfwWindowShouldClose(window))
     {
         begin_of_mainLoop();
 
         {
+            if (c)
+            {
+                drawSameple3("okz",&c);
+            }
+
             drawSample();
             drawSameple2("weilai");
         }

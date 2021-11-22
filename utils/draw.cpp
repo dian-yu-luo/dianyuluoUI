@@ -12,3 +12,8 @@ void drawSameple2(char *w)
     ImGui::Begin(w, &Sample1);
     ImGui::End();
 }
+void drawSameple3(char *w, bool *c)
+{
+    ImGui::Begin(w, c);
+    ImGui::End();
+}

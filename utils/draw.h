@@ -4,3 +4,4 @@
 
 void drawSample();
 void drawSameple2(char *w);
+void drawSameple3(char *w,bool *c);
