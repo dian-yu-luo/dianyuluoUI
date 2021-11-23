@@ -1,48 +1,25 @@
-#include <stdio.h>
-#include "init.h"
-#include "stop.h"
-#include "begin_of_mainLoop.h"
-#include "end_of_mainLoop.h"
-#include <Windows.h>
-#include <draw.h>
+#define CATCH_CONFIG_MAIN // This tells Catch to provide a main() - only do this in one cpp file
 
-#include <GLFW/glfw3.h> // Will drag system OpenGL headers
+#include "catch.hpp"
 
-int main(int, char **)
+unsigned int Factorial(unsigned int number) {
+    return number <= 1 ? number : Factorial(number - 1) * number;
+}
+
+TEST_CASE("Factorials are computed", "[factorial]")
 {
+    std::cout << "liang";
+    std::cout << "zhongguo ";
+    REQUIRE(Factorial(1) == 6);
+    REQUIRE(Factorial(2) == 2);
+    REQUIRE(Factorial(3) == 5);
+    REQUIRE(Factorial(10) == 3628800);
+}
 
-    bool c = true;
-    bool k = false;
-    GLFWwindow *window = init();
-    while (!glfwWindowShouldClose(window))
-    {
-        begin_of_mainLoop();
-
-        {
-            // 交替成就写法
-            if (c)
-            {
-                drawSameple3("okz", &c);
-            }
-            if (!c)
-            {
-                k = true;
-
-                drawSameple3("ak", &k);
-                if (!k)
-                {
-                    c = true;
-                }
-            }
-
-            drawSample();
-            drawSameple2("weilai");
-        }
-
-        end_of_mainLoop(window);
-    }
-
-    stop(window);
-
-    return 0;
+TEST_CASE("Factorials are computed2", "[factorial]")
+{
+    // REQUIRE(Factorial(1) == 6);
+    REQUIRE(Factorial(2) == 2);
+    // REQUIRE(Factorial(3) == 5);
+    REQUIRE(Factorial(10) == 3628800);
 }

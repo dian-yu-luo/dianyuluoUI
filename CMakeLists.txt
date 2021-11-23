@@ -9,8 +9,6 @@ aux_source_directory(utils utilsources)
 aux_source_directory(test testsources)
 
 
-
-
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
 
@@ -29,16 +27,16 @@ link_libraries(imgui::imgui)
 find_package(glfw3 CONFIG REQUIRED)
 link_libraries(glfw)
 
-link_libraries( opengl32)
+link_libraries(opengl32)
 
 include_directories(
-    ${PROJECT_SOURCE_DIR}/src
-    ${PROJECT_SOURCE_DIR}/utils
+        ${PROJECT_SOURCE_DIR}/src
+        ${PROJECT_SOURCE_DIR}/utils
 )
 include(CPack)
 
 # -----------------------------------------------------------------------------------------------------------
 
-add_executable(main ${sources} ${utilsources} main.cpp )
-add_executable(testproject ${sources} ${utilsources} test/main.cpp )
+add_executable(main ${sources} ${utilsources} main.cpp)
+add_executable(testproject ${sources} ${utilsources} test/main.cpp)
 
