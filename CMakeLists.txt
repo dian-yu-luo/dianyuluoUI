@@ -27,6 +27,8 @@ link_libraries(imgui::imgui)
 find_package(glfw3 CONFIG REQUIRED)
 link_libraries(glfw)
 
+find_package(Boost)
+
 link_libraries(opengl32)
 
 include_directories(
